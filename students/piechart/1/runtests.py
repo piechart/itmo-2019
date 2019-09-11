@@ -32,7 +32,7 @@ def perform_testing(target_dir=""):
     if len(target_dir) == 0:
         target_dir = os.getcwd()
 
-    test_files = find_files(target_dir, f"*{PY_EXTENSION}")
+    test_files = find_files(target_dir, f"{TEST_PREFIX}*{PY_EXTENSION}")
 
     for test_file in test_files:
         module = import_module(test_file)
