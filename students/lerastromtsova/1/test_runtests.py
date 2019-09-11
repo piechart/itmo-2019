@@ -1,8 +1,7 @@
 import unittest
 from runtests import TestRunner
 
-SAMPLES_PATH = '/Users/gingy/ITMO/4_course/testing/itmo-2019' \
-               '/students/lerastromtsova/1/samples/'
+SAMPLES_PATH = '/Users/gingy/ITMO/4_course/testing/itmo-2019/students/lerastromtsova/1/samples/'
 NON_EXISTING_PATH = '/Users/gingy/sometests'
 NO_TESTS_PATH = '/Users/gingy/ITMO/4_course/testing'
 
