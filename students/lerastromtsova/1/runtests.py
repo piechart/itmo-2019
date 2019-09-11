@@ -3,8 +3,6 @@ import subprocess
 
 PREFIX_TESTS = 'test_'
 FILE_TYPE_TESTS = '.py'
-SAMPLES_PATH = '/Users/gingy/ITMO/4_course/testing/itmo-2019' \
-               '/students/lerastromtsova/1/samples/'
 
 
 class TestRunner(object):
@@ -21,7 +19,7 @@ class TestRunner(object):
 
     def collect_tests(self, path):
         """ Collects the tests from a given path. """
-        self.tests.extend(glob.glob(f'{path}/{PREFIX_TESTS}*{FILE_TYPE_TESTS}'))
+        self.tests = glob.glob(f'{path}/{PREFIX_TESTS}*{FILE_TYPE_TESTS}')
 
     def run_tests(self):
         """
@@ -40,6 +38,7 @@ class TestRunner(object):
 
 
 if __name__ == '__main__':
+    path = input("Enter path to directory with tests: ")
     test_runner = TestRunner()
-    test_runner.collect_tests(SAMPLES_PATH)
+    test_runner.collect_tests(path)
     test_runner.run_tests()
