@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
+
 import glob
-import subprocess
+import subprocess  # noqa: S404
 
 PREFIX_TESTS = 'test_'
 FILE_TYPE_TESTS = '.py'
@@ -7,38 +9,42 @@ FILE_TYPE_TESTS = '.py'
 
 class TestRunner(object):
     """
-        Class for running tests in any given directory.
+    Class for running tests in any given directory.
 
-        Test filenames should start with PREFIX defined above
-        and have an extension FILE_TYPE_TESTS defined above
+    Test filenames should start with PREFIX_TESTS defined above
+    and have an extension FILE_TYPE_TESTS defined above
     """
 
-    tests = []
     passed = []
     failed = []
 
     def collect_tests(self, path):
-        """ Collects the tests from a given path. """
-        self.tests = glob.glob(f'{path}/{PREFIX_TESTS}*{FILE_TYPE_TESTS}')
+        """Collects the tests from a given path."""
+        name = '{0}/{1}*{2}'.format(path, PREFIX_TESTS, FILE_TYPE_TESTS)
+        return glob.glob(name)
 
-    def run_tests(self):
+    def run_tests(self, tests):
         """
-            Runs the tests from self.tests.
+        Runs the tests with names from self.tests.
 
-            Adds them to either passed or failed.
+        Adds them to either passed or failed.
         """
-        for test in self.tests:
+        for test in tests:
+            command = 'python {0}'.format(test)
             try:
-                subprocess.check_call(f'python {test}', shell=True)
-                self.passed.append(test)
-                print(f'{test} - ok')
+                flag = subprocess.check_call(command, shell=True)  # noqa: S602
             except subprocess.CalledProcessError:
-                print(f'{test} - fail')
+                flag = 1
+            if flag:
                 self.failed.append(test)
+                print('{0} - fail'.format(test))  # noqa: T001
+            else:
+                self.passed.append(test)
+                print('{0} - ok'.format(test))  # noqa: T001
 
 
 if __name__ == '__main__':
-    path = input("Enter path to directory with tests: ")
+    path = input('Enter path to directory with tests: ')  # noqa: S322, WPS421
     test_runner = TestRunner()
-    test_runner.collect_tests(path)
-    test_runner.run_tests()
+    tests = test_runner.collect_tests(path)
+    test_runner.run_tests(tests)

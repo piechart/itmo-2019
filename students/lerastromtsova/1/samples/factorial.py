@@ -1,8 +1,14 @@
-def find_factorial(a):
-    """ This function finds a factorial of a given number a
-    If the given number is negative or non-integer, it returns None"""
-    if a < 0 or not isinstance(a, int):
+# -*- coding: utf-8 -*-
+
+
+def find_factorial(num):
+    """
+    This function finds a factorial of a given number a.
+
+    If the given number is negative or non-integer, it returns None
+    """
+    if num < 0 or not isinstance(num, int):
         return None
-    elif a == 1:
-        return a
-    return a * find_factorial(a-1)
+    elif num == 1:
+        return num
+    return num * find_factorial(num - 1)

@@ -1,9 +1,12 @@
-def find_gcd(a, b):
-    """ This function finds the Greatest Common Divisor of 2 numbers: a and b"""
-    while b:
-        # the right way
-        # a, b = b, a % b
+# -*- coding: utf-8 -*-
 
-        # the bug
-        a, b = b, a // b
-    return a
+
+def find_gcd(num1, num2):
+    """
+    This function should find Greatest Common Divisor of 2 numbers.
+
+    But it has a bug and fails the tests
+    """
+    while num2:
+        num1, num2 = num2, num1 // num2
+    return num1
