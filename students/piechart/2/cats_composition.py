@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # We reuse implementation from the direct version:
-from itmo.second.cats_direct import (
+from cats_direct import (
     create_parser,
     fetch_cat_fact,
     fetch_cat_image,
