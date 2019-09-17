@@ -1,0 +1,1 @@
+- cats_direct is easier to read and understand even without annotated types. Clear logic, understandable parameters and their limitations => no questions what and how to test.
