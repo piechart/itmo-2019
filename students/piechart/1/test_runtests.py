@@ -9,7 +9,7 @@ import runtests
 def test_correct_module_import():
     """Tests correct module import."""
     assert runtests.import_module(
-        '{0}/{1}'.format(os.getcwd(), 'file_with_tests.py'),
+        '{0}/{1}'.format(os.getcwd(), 'runtests.py'),
     )
 
 
@@ -33,7 +33,7 @@ def test_find_invalid_files():
 def test_extract_tests():
     """Tests funcs extractions."""
     module = runtests.import_module(
-        '{0}/{1}'.format(os.getcwd(), 'file_with_tests.py'),
+        '{0}/{1}'.format(os.getcwd(), 'test_runtests.py'),
     )
     assert runtests.extract_tests(module)
     assert (not runtests.extract_tests(None))
