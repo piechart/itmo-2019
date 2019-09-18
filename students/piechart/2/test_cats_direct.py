@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import os
-import unittest
 import shutil
+import unittest
 
 import urllib3
 
 import cats_direct
 
 
-class TestCatsDirect(unittest.TestCase):
+class TestCatsDirect(unittest.TestCase):  # noqa WPS230
     """cats_direct tester."""
 
     def setUp(self):
@@ -38,7 +38,7 @@ class TestCatsDirect(unittest.TestCase):
             self.test_file_data['extension'],
         )
         self.http_exception_text = 'HTTP exception raised'
-        
+
     def tearDown(self):
         """Cleanup."""
         shutil.rmtree(self.store_dirname)
