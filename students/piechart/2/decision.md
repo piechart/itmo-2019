@@ -1,3 +1,4 @@
 - cats_direct is easier to read and understand even without annotated types. Clear logic, understandable parameters and their limitations => no questions what and how to test.
 - assuming we have cats_direct in cats_composition used as a compiled module and we don't have an access to its source code, it becomes unclear how to test cats_composition since it only contains execution chain info, callers composition (cats_composition unexpectedly contains composition :o) and does now allow to understand the details of the functions used there - their behaviour, input and output. It is completely DI-built protocol-comparable class that only provides abstractions which can not (in this particular case) and should not be tested as units independently from the details.
-- only poor output test of cats_composition was made
+- only poor output test of cats_composition was made.
+- as what we do here is unittesting some system dependent on a network and its data I don't see mocking this data as a good idea because the test that is passed on a mocked data format is not helpful in case this format is changed on a server side.
