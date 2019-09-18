@@ -2,6 +2,7 @@
 
 import os
 import unittest
+import shutil
 
 import urllib3
 
@@ -19,10 +20,12 @@ class TestCatsDirect(unittest.TestCase):
         }
         self.test_cat_fact = 'Test cat fact'
 
-        store_dirname = 'temp'
+        self.store_dirname = 'temp'
+        if (not os.path.exists(self.store_dirname)):
+            os.mkdir(self.store_dirname)
 
         self.test_fact_path = '{0}/cat_{1}_fact.txt'.format(
-            store_dirname,
+            self.store_dirname,
             self.test_file_data['index'],
         )
         self.test_image_path = '{0}.{1}'.format(
@@ -30,11 +33,15 @@ class TestCatsDirect(unittest.TestCase):
             self.test_file_data['extension'],
         )
         self.test_result_image_path = '{0}/cat_{1}_image.{2}'.format(
-            store_dirname,
+            self.store_dirname,
             self.test_file_data['index'],
             self.test_file_data['extension'],
         )
         self.http_exception_text = 'HTTP exception raised'
+        
+    def tearDown(self):
+        """Cleanup."""
+        shutil.rmtree(self.store_dirname)
 
     def test_parser(self):
         """Tests arguments parsing."""
