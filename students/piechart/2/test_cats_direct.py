@@ -6,7 +6,12 @@ import shutil
 
 import urllib3
 
-import cats_direct
+from itmo.second.cats_direct import (
+    create_parser,
+    fetch_cat_fact,
+    fetch_cat_image,
+    save_cat,
+)
 
 
 class TestCatsDirect(unittest.TestCase):
@@ -46,13 +51,13 @@ class TestCatsDirect(unittest.TestCase):
     def test_parser(self):
         """Tests arguments parsing."""
         test_args = ['--count', '3']
-        parsed = cats_direct.create_parser().parse_args(test_args)
+        parsed = create_parser().parse_args(test_args)
         self.assertEqual(parsed.count, int(test_args[-1]))
 
     def test_fetch_cat_fact(self):
         """Tests cat fact fetched result."""
         try:
-            fact = cats_direct.fetch_cat_fact()
+            fact = fetch_cat_fact()
         except Exception:
             self.fail(self.http_exception_text)
 
@@ -62,7 +67,7 @@ class TestCatsDirect(unittest.TestCase):
     def test_fetch_cat_image(self):
         """Tests cat image fetched result."""
         try:
-            fetched = cats_direct.fetch_cat_image()
+            fetched = fetch_cat_image()
         except Exception:
             self.fail(self.http_exception_text)
 
@@ -87,7 +92,7 @@ class TestCatsDirect(unittest.TestCase):
         self.assertTrue(os.path.isfile(self.test_image_path))
 
         with open(self.test_image_path, 'rb') as test_image:
-            cats_direct.save_cat(
+            save_cat(
                 index=self.test_file_data['index'],
                 fact=self.test_cat_fact,
                 image=(self.test_file_data['extension'], test_image),

@@ -3,7 +3,7 @@
 import os
 import unittest
 
-import cats_composition
+from itmo.second import cats_composition
 
 
 class TestCatsComposition(unittest.TestCase):
@@ -25,12 +25,12 @@ class TestCatsComposition(unittest.TestCase):
         if os.path.exists(fact_file):
             os.remove(fact_file)
 
-        cat_processor = cats_composition.CatProcessor(
-            cats_composition.fetch_cat_fact,
-            cats_composition.fetch_cat_image,
-            cats_composition.save_cat,
+        cat_processor = CatProcessor(
+            fetch_cat_fact,
+            fetch_cat_image,
+            save_cat,
         )
-        cats_composition.main(
+        main(
             self.test_file_amount,
             process_cat=cat_processor,
             show_information=print,  # noqa: T002
