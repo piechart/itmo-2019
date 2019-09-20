@@ -48,10 +48,8 @@ def perform_testing(target_dir=''):
     if not target_dir:
         target_dir = os.getcwd()
 
-    for test_file in find_files(
-        target_dir,
-        '{0}*{1}'.format(TEST_PREFIX, PY_EXTENSION),
-    ):
+    mask = '{0}*{1}'.format(TEST_PREFIX, PY_EXTENSION)
+    for test_file in find_files(target_dir, mask):
         module = import_module(test_file)
 
         if module is None:
@@ -66,5 +64,4 @@ def perform_testing(target_dir=''):
 
 
 if __name__ == '__main__':
-    target_dir = input('Input target dir (Enter for current): ')  # noqa: WPS421, S322, E501
-    perform_testing(target_dir)
+    perform_testing()
