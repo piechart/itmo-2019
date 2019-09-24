@@ -2,6 +2,8 @@ import pytest
 from cli import (
     ls,
     mk,
+    rm,
+    contains,
 )
 
 def test_ls_empty_dir(tmp_path):
@@ -44,3 +46,43 @@ def test_mk_duplicate(tmp_path):
 def test_mk_invalid_filename(tmp_path):
     f = tmp_path / 'f/1/l/e.txt'
     assert mk(f) == 3
+
+def test_rm_success(tmp_path):
+    f = tmp_path / 'file.txt'
+    f.write_text('text')
+    assert rm(f) == 'success'
+
+def test_rm_dir(tmp_path):
+    d = tmp_path / 'dir'
+    d.mkdir()
+    assert rm(d) == 'argument is dir'
+
+def test_rm_fail(tmp_path):
+    f = tmp_path / 'somefile.txt'
+    assert rm(f) == 'file not found'
+
+def test_rm_no_filename():
+    assert rm() == 'wrong argument'
+
+def test_contains_no_filename():
+    assert contains() == 'wrong argument'
+
+def test_contains_success():
+    mk('file.txt')
+    assert contains('file.txt') == 0
+    rm('file.txt')
+
+def test_contains_dir(tmp_path):
+    d = tmp_path / 'dir'
+    d.mkdir()
+    assert contains(d) == 'argument is dir'
+
+def test_contains_non_existing_file():
+    assert contains('non_existing_file.txt') == 1
+
+
+
+
+
+
+#
