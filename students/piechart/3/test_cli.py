@@ -1,10 +1,17 @@
-import pytest
 from cli import (
     ls,
     mk,
     rm,
     contains,
+    since,
 )
+
+import pytest
+
+@pytest.fixture
+def earlier_than_now_timestamp():
+    from datetime import datetime
+    return int(datetime.timestamp(datetime.now())) - 10
 
 def test_ls_empty_dir(tmp_path):
     assert ls(tmp_path) == []
@@ -28,24 +35,24 @@ def test_ls_files_and_dirs(tmp_path):
     assert(len(ls(tmp_path))) == 2
 
 def test_mk_no_filename():
-    assert mk() == 1
+    assert mk() == 'wrong argument'
 
 def test_mk_en_filename(tmp_path):
     f = tmp_path / 'file.txt'
-    assert mk(f) == 0
+    assert mk(f) == 'success'
 
 def test_mk_ru_filename(tmp_path):
     f = tmp_path / 'файл.txt'
-    assert mk(f) == 0
+    assert mk(f) == 'success'
 
 def test_mk_duplicate(tmp_path):
     f = tmp_path / 'file.txt'
     f.write_text('text')
-    assert mk(f) == 2
+    assert mk(f) == 'file already exists'
 
 def test_mk_invalid_filename(tmp_path):
     f = tmp_path / 'f/1/l/e.txt'
-    assert mk(f) == 3
+    assert mk(f) == 'invalid filename'
 
 def test_rm_success(tmp_path):
     f = tmp_path / 'file.txt'
@@ -80,9 +87,46 @@ def test_contains_dir(tmp_path):
 def test_contains_non_existing_file():
     assert contains('non_existing_file.txt') == 1
 
+def test_since_no_date():
+    assert since() == 'wrong argument'
 
+def test_since_not_existing_dir(tmp_path):
+    d = tmp_path / 'dir'
+    assert since(123, d) == 'dir not found'
 
+def test_since_empty_dir(tmp_path):
+    d = tmp_path / 'dir'
+    d.mkdir()
+    assert since(123, d) == 'dir is empty'
 
+def test_since_only_dirs(tmp_path, earlier_than_now_timestamp):
+    d = tmp_path / 'dir'
+    d.mkdir()
+    ad = d / 'another dir'
+    ad.mkdir()
+    result = since(earlier_than_now_timestamp, d)
+    assert isinstance(result, list)
+    assert len(result) == 1
 
+def test_since_only_files(tmp_path, earlier_than_now_timestamp):
+    d = tmp_path / 'dir'
+    d.mkdir()
+    f = d / 'file.txt'
+    f.write_text('test')
+    result = since(earlier_than_now_timestamp, d)
+    assert isinstance(result, list)
+    assert len(result) == 1
 
-#
+def test_since_dirs_and_files(tmp_path, earlier_than_now_timestamp):
+    d = tmp_path / 'dir'
+    d.mkdir()
+    subdir = d / 'subdir'
+    subdir.mkdir()
+    f = d / 'file.txt'
+    f.write_text('text')
+    result = since(earlier_than_now_timestamp, d)
+    assert isinstance(result, list)
+    assert len(result) == 2
+
+def test_since_invalid_date():
+    assert since('abcd') == 'wrong argument'
