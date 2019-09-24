@@ -17,15 +17,14 @@ def ls(arg=None):
 
 def mk(arg=None):
     if not arg:
-        return 1
+        return 'wrong argument'
     if os.path.exists(arg):
-        return 2
-
+        return 'file already exists'
     try:
         open(arg, 'a').close()
-    except OSError: # invalid filename
-        return 3
-    return 0
+    except OSError:
+        return 'invalid filename'
+    return 'success'
 
 def rm(arg=None):
     if not arg:
@@ -43,6 +42,21 @@ def contains(arg=None):
     if os.path.isdir(arg):
         return 'argument is dir'
     return 0 if arg in ls() else 1
+
+def since(timestamp=None, directory=os.getcwd()):
+    if not timestamp:
+        return 'wrong argument'
+    try:
+        timestamp = int(timestamp)
+    except:
+        return 'wrong argument'
+    if not os.path.exists(directory):
+        return 'dir not found'
+    content = ls(directory)
+    if not content:
+        return 'dir is empty'
+    return [item for item in content if os.stat('{0}/{1}'.format(directory, item)).st_ctime > timestamp]
+
 
 
 if __name__ == '__main__':
