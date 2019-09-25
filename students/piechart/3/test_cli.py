@@ -7,6 +7,7 @@ from cli import (
 )
 
 import pytest
+import subprocess
 
 @pytest.fixture
 def earlier_than_now_timestamp():
@@ -34,6 +35,9 @@ def test_ls_files_and_dirs(tmp_path):
     f.write_text('text')
     assert(len(ls(tmp_path))) == 2
 
+def test_ls_integration():
+    assert subprocess.call(['python3', 'cli.py', 'ls']) == 0
+
 def test_mk_no_filename():
     assert mk() == 'wrong argument'
 
@@ -44,6 +48,9 @@ def test_mk_en_filename(tmp_path):
 def test_mk_ru_filename(tmp_path):
     f = tmp_path / 'файл.txt'
     assert mk(f) == 'success'
+
+def test_mk_integration():
+    assert subprocess.call(['python3', 'cli.py', 'mk', 'file.txt']) == 0
 
 def test_mk_duplicate(tmp_path):
     f = tmp_path / 'file.txt'
@@ -71,6 +78,9 @@ def test_rm_fail(tmp_path):
 def test_rm_no_filename():
     assert rm() == 'wrong argument'
 
+def test_rm_integration():
+    assert subprocess.call(['python3', 'cli.py', 'rm', 'somefile.txt']) == 0
+
 def test_contains_no_filename():
     assert contains() == 'wrong argument'
 
@@ -89,6 +99,9 @@ def test_contains_non_existing_file():
 
 def test_since_no_date():
     assert since() == 'wrong argument'
+
+def test_contains_integration():
+    assert subprocess.call(['python3', 'cli.py', 'contains', 'file.txt']) == 0
 
 def test_since_not_existing_dir(tmp_path):
     d = tmp_path / 'dir'
@@ -127,6 +140,9 @@ def test_since_dirs_and_files(tmp_path, earlier_than_now_timestamp):
     result = since(earlier_than_now_timestamp, d)
     assert isinstance(result, list)
     assert len(result) == 2
+
+def test_since_integration():
+    assert subprocess.call(['python3', 'cli.py', 'since', '0']) == 0
 
 def test_since_invalid_date():
     assert since('abcd') == 'wrong argument'
