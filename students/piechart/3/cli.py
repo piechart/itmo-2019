@@ -9,19 +9,30 @@ WRONG_ARGUMENT = 'WRONG_ARGUMENT'
 
 def main(commands, module):
     """Main."""
-    if hasattr(module, commands[0]):  # noqa WPS421
+    executable = commands[0]
+    supported = {
+        'ls': ls,
+        'mk': mk,
+        'rm': rm,
+        'contains': contains,
+        'since': since,
+    }
+    if executable in supported:
+        func_to_execute = supported[executable]
         arg = commands[1] if len(commands) > 1 else None
-        getattr(module, commands[0])(arg)  # noqa WPS421
+        func_to_execute(arg)
     else:
-        print('Unknown command passed')  # noqa T001
+        print('You better use supported command, human')  # noqa T001
 
 
 def ls(arg=None):
     """ls."""
     directory = os.getcwd() if arg is None else arg
-    files = [file_object.name for file_object in os.scandir(directory) if file_object.is_file()]  # noqa E501
+    scan_result = os.scandir(directory)
+    files_filtered = filter(lambda x: x.is_file(), scan_result)
+    files_mapped = list(map(lambda x: x.name, files_filtered))
     dirs = [folder.name for folder in os.scandir(directory) if folder.is_dir()]
-    return files + dirs
+    return files_mapped + dirs
 
 
 def mk(arg=None):
@@ -83,10 +94,14 @@ def since(timestamp, directory=os.getcwd()):  # noqa WPS404, B008
     return result_list
 
 
-if __name__ == '__main__':
+def make_parser():
+    """Arg parser."""
     parser = argparse.ArgumentParser()
     parser.add_argument('action', type=str, nargs='*', help='Action')
-    args = parser.parse_args()
+    return parser
 
+
+if __name__ == '__main__':
+    arguments = make_parser().parse_args()
     current_module = sys.modules[__name__]
-    main(args.action, current_module)
+    main(arguments.action, current_module)

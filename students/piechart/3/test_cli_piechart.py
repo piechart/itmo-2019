@@ -39,7 +39,7 @@ def test_since(since_fixture):
 def test_integration(integration_fixture):
     """Test func."""
     command, arg = integration_fixture
-    format_str = 'python students/piechart/3/cli.py {0}'  # noqa E800?
-    # format_str = 'python3 cli.py {0}'  # noqa E800
+    # format_str = 'python students/piechart/3/cli.py {0}'  # noqa E800
+    format_str = 'python3 students/piechart/3/cli.py {0}'  # noqa E800
     command_str = format_str.format(command)
     assert subprocess.call(command_str, shell=True) == 0  # noqa: S602

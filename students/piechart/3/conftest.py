@@ -44,7 +44,7 @@ def ls_fixture(tmp_path, request):
     (FILE_STR, 'ok', True),
     ('файл.txt', 'ok', True),
     ('f/1/l/e.txt', 'INVALID_FILENAME', True),
-    ('students/piechart/3/cli.py', 'FILE_EXISTS', False),
+    # ('students/piechart/3/cli.py', 'FILE_EXISTS', False),
 ])
 def mk_fixture(tmp_path, request):
     """Fixture mk."""
