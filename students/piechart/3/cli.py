@@ -29,8 +29,8 @@ def ls(arg=None):
     """ls."""
     directory = os.getcwd() if arg is None else arg
     scan_result = os.scandir(directory)
-    files_filtered = filter(lambda x: x.is_file(), scan_result)
-    files_mapped = list(map(lambda x: x.name, files_filtered))
+    files_filtered = filter(lambda zxc: zxc.is_file(), scan_result)
+    files_mapped = list(map(lambda zxc: zxc.name, files_filtered))
     dirs = [folder.name for folder in os.scandir(directory) if folder.is_dir()]
     return files_mapped + dirs
 

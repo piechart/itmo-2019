@@ -2,7 +2,7 @@
 
 
 from cli import since
-from constants import (
+from constants import (  # noqa I001
     DIRSTR,
     INV_ARG,
     M_NUMBER,

@@ -13,7 +13,7 @@ DIR_STR = 'dir'
 WRONG_ARG_STR = 'WRONG_ARGUMENT'
 
 
-@pytest.fixture
+@pytest.fixture()
 def earlier_than_now_timestamp():
     """Timestamp."""
     return int(datetime.datetime.timestamp(datetime.datetime.now())) - 10
