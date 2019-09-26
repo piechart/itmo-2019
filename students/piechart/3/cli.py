@@ -4,7 +4,7 @@ import argparse
 import os
 import sys
 
-WRONG_ARGUMENT = 'wrong argument'
+WRONG_ARGUMENT = 'WRONG_ARGUMENT'
 
 
 def main(commands, module):
@@ -29,24 +29,24 @@ def mk(arg=None):
     if not arg:
         return WRONG_ARGUMENT
     if os.path.exists(arg):
-        return 'file already exists'
+        return 'FILE_EXISTS'
     try:
         open(arg, 'a').close()  # noqa WPS515
     except OSError:
-        return 'invalid filename'
-    return 'success'
+        return 'INVALID_FILENAME'
+    return 'ok'
 
 
 def rm(arg=None):
     """rm."""
     if not arg:
-        return 'wrong argument'
+        return 'WRONG_ARGUMENT'
     if os.path.isdir(arg):
-        return 'argument is dir'
+        return 'ARG_IS_DIR'
     if not os.path.exists(arg):
-        return 'file not found'
+        return 'FILE_NOT_FOUND'
     os.remove(arg)
-    return 'success'
+    return 'ok'
 
 
 def contains(arg=None):
@@ -54,35 +54,39 @@ def contains(arg=None):
     if not arg:
         return WRONG_ARGUMENT
     if os.path.isdir(arg):
-        return 'argument is dir'
-    return 0 if arg in ls() else 1
+        return 'ARG_IS_DIR'
+    result_list = ls()
+    if arg in result_list:
+        return 0
+    return 1
 
 
-def since(timestamp=None, directory=os.getcwd()):  # noqa WPS404, B008
+def since(timestamp, directory=os.getcwd()):  # noqa WPS404, B008
     """since."""
-    if not timestamp:
-        return WRONG_ARGUMENT
     try:
         timestamp = int(timestamp)
     except Exception:
         return WRONG_ARGUMENT
+    if not directory:
+        return WRONG_ARGUMENT
     if not os.path.exists(directory):
-        return 'dir not found'
-    dir_content = ls(directory)
-    if not dir_content:
-        return 'dir is empty'
-    return [
-        item_object for item_object in dir_content if os.stat('{0}/{1}'.format(
-            directory,
-            item_object,
-        )).st_ctime > timestamp
-    ]
+        return 'DIR_NOT_FOUND'
+    if not ls(directory):
+        return 'DIR_IS_EMPTY'
+    result_list = []
+    for path in ls(directory):
+        format_str = '{0}/{1}'
+        formatted = format_str.format(directory, path)
+        creation_time = os.stat(formatted).st_ctime
+        if creation_time > timestamp:
+            result_list.append(path)
+    return result_list
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('command', type=str, nargs='*', help='Command')
+    parser.add_argument('action', type=str, nargs='*', help='Action')
     args = parser.parse_args()
 
     current_module = sys.modules[__name__]
-    main(args.command, current_module)
+    main(args.action, current_module)
