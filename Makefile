@@ -6,7 +6,7 @@ lint:
 
 .PHONY: unit
 unit:
-	@echo "unit: not yet"
+	poetry run pytest
 
 .PHONY: package
 package:
