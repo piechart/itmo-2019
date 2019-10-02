@@ -6,7 +6,11 @@ lint:
 
 .PHONY: unit
 unit:
-	poetry run pytest
+	poetry run sh bin/test.sh
+
+.PHONY: typecheck
+typecheck:
+	poetry run sh bin/typecheck.sh
 
 .PHONY: package
 package:
@@ -15,4 +19,4 @@ package:
 	poetry run safety check --bare --full-report
 
 .PHONY: test
-test: lint unit package
+test: lint typecheck unit package
