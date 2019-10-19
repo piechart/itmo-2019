@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>fyodorpizza package &#8212; pizzaz  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="fyodorpizza.migrations package" href="fyodorpizza.migrations.html" />
+    <link rel="prev" title="pizzaz package" href="pizzaz.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="fyodorpizza-package">
+<h1>fyodorpizza package<a class="headerlink" href="#fyodorpizza-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fyodorpizza.migrations.html">fyodorpizza.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fyodorpizza.migrations.html#module-fyodorpizza.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-fyodorpizza.usecases.getMenu">
+<span id="fyodorpizza-usecases-getmenu-module"></span><h2>fyodorpizza.usecases.getMenu module<a class="headerlink" href="#module-fyodorpizza.usecases.getMenu" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="fyodorpizza.usecases.getMenu.GetMenu">
+<em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.usecases.getMenu.</code><code class="sig-name descname">GetMenu</code><a class="headerlink" href="#fyodorpizza.usecases.getMenu.GetMenu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Gets menu - a list of all <a class="reference internal" href="glossary.html#term-pizza"><span class="xref std std-term">Pizza</span></a>.</p>
+<div class="highlight-gherkin notranslate"><div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Full list of pizzas (menu)</span>
+<span class="nf">  As a user</span>
+<span class="nf">  I want to see full list of all types of pizza</span>
+<span class="nf">  So that I can choose the pizza I want</span>
+
+<span class="nf">  </span><span class="k">Scenario:</span><span class="nf"> User opens the &#39;Pizzas&#39; tab on the website</span>
+<span class="k">    When </span><span class="nf">the user opens the &#39;Pizzas&#39; tab on the website</span>
+<span class="nf">    </span><span class="k">Then </span><span class="nf">the the full list of pizza types is displayed</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.0.</span></p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-fyodorpizza.usecases.getStatistics">
+<span id="fyodorpizza-usecases-getstatistics-module"></span><h2>fyodorpizza.usecases.getStatistics module<a class="headerlink" href="#module-fyodorpizza.usecases.getStatistics" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="fyodorpizza.usecases.getStatistics.GetStatistics">
+<em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.usecases.getStatistics.</code><code class="sig-name descname">GetStatistics</code><a class="headerlink" href="#fyodorpizza.usecases.getStatistics.GetStatistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Gets statistics on <a class="reference internal" href="glossary.html#term-pizza"><span class="xref std std-term">Pizza</span></a> ordered today.</p>
+<div class="highlight-gherkin notranslate"><div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Ordered pizzas statistics</span>
+<span class="nf">  As a delivery service manager</span>
+<span class="nf">  I want to see statistics about pizzas that were ordered on our website</span>
+<span class="nf">  So that I am able to analyze it</span>
+
+<span class="nf">  </span><span class="k">Scenario:</span><span class="nf"> Manager opens the &#39;Statistics&#39; tab on our website</span>
+<span class="k">    When </span><span class="nf">the manager opens the &#39;Statistics&#39; tab on our website</span>
+<span class="nf">    </span><span class="k">Then </span><span class="nf">full list of pizzas ordered today is displayed</span>
+<span class="nf">    </span><span class="k">And </span><span class="nf">it is possible to filter the list by pizza status</span>
+<span class="nf">    </span><span class="k">And </span><span class="nf">it is possible to filter the list by pizza name</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.0.</span></p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-fyodorpizza.usecases.postOrder">
+<span id="fyodorpizza-usecases-postorder-module"></span><h2>fyodorpizza.usecases.postOrder module<a class="headerlink" href="#module-fyodorpizza.usecases.postOrder" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="fyodorpizza.usecases.postOrder.PostOrder">
+<em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.usecases.postOrder.</code><code class="sig-name descname">PostOrder</code><a class="headerlink" href="#fyodorpizza.usecases.postOrder.PostOrder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Posts new <a class="reference internal" href="glossary.html#term-order"><span class="xref std std-term">Order</span></a>.</p>
+<div class="highlight-gherkin notranslate"><div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Order pizza(s)</span>
+<span class="nf">  As a user</span>
+<span class="nf">  I want to order pizza</span>
+
+<span class="nf">  </span><span class="k">Scenario:</span><span class="nf"> User chooses one or more pizzas and presses &#39;Order&#39;</span>
+<span class="k">    Given </span><span class="nf">that the user has entered his email address</span>
+<span class="nf">    </span><span class="k">When </span><span class="nf">the user chooses one or more pizzas and presses &#39;Order&#39;</span>
+<span class="nf">    </span><span class="k">Then </span><span class="nf">an Order is created in the database</span>
+<span class="nf">    </span><span class="k">And </span><span class="nf">a confirmation is sent to the user&#39;s email address</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.0.</span></p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-fyodorpizza.admin">
+<span id="fyodorpizza-admin-module"></span><h2>fyodorpizza.admin module<a class="headerlink" href="#module-fyodorpizza.admin" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-fyodorpizza.apps">
+<span id="fyodorpizza-apps-module"></span><h2>fyodorpizza.apps module<a class="headerlink" href="#module-fyodorpizza.apps" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="fyodorpizza.apps.FyodorpizzaConfig">
+<em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.apps.</code><code class="sig-name descname">FyodorpizzaConfig</code><span class="sig-paren">(</span><em class="sig-param">app_name</em>, <em class="sig-param">app_module</em><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.apps.FyodorpizzaConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.apps.config.AppConfig</span></code></p>
+<dl class="attribute">
+<dt id="fyodorpizza.apps.FyodorpizzaConfig.name">
+<code class="sig-name descname">name</code><em class="property"> = 'fyodorpizza'</em><a class="headerlink" href="#fyodorpizza.apps.FyodorpizzaConfig.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-fyodorpizza.models">
+<span id="fyodorpizza-models-module"></span><h2>fyodorpizza.models module<a class="headerlink" href="#module-fyodorpizza.models" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-fyodorpizza.tests">
+<span id="fyodorpizza-tests-module"></span><h2>fyodorpizza.tests module<a class="headerlink" href="#module-fyodorpizza.tests" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="fyodorpizza.tests.GetMenuTest">
+<em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.tests.</code><code class="sig-name descname">GetMenuTest</code><span class="sig-paren">(</span><em class="sig-param">methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.tests.GetMenuTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.test.testcases.TestCase</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fyodorpizza.tests.GetStatisticsTest">
+<em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.tests.</code><code class="sig-name descname">GetStatisticsTest</code><span class="sig-paren">(</span><em class="sig-param">methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.tests.GetStatisticsTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.test.testcases.TestCase</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="fyodorpizza.tests.PostOrderTest">
+<em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.tests.</code><code class="sig-name descname">PostOrderTest</code><span class="sig-paren">(</span><em class="sig-param">methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.tests.PostOrderTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.test.testcases.TestCase</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-fyodorpizza.views">
+<span id="fyodorpizza-views-module"></span><h2>fyodorpizza.views module<a class="headerlink" href="#module-fyodorpizza.views" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-fyodorpizza">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-fyodorpizza" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pizzaz</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pizzaz.html">pizzaz package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">fyodorpizza package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.usecases.getMenu">fyodorpizza.usecases.getMenu module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.usecases.getStatistics">fyodorpizza.usecases.getStatistics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.usecases.postOrder">fyodorpizza.usecases.postOrder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.admin">fyodorpizza.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.apps">fyodorpizza.apps module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.models">fyodorpizza.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.tests">fyodorpizza.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.views">fyodorpizza.views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="pizzaz.html" title="previous chapter">pizzaz package</a></li>
+      <li>Next: <a href="fyodorpizza.migrations.html" title="next chapter">fyodorpizza.migrations package</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Valeria Stromtsova.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/fyodorpizza.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
