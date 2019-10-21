@@ -48,11 +48,11 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-fyodorpizza.usecases.getMenu">
-<span id="fyodorpizza-usecases-getmenu-module"></span><h2>fyodorpizza.usecases.getMenu module<a class="headerlink" href="#module-fyodorpizza.usecases.getMenu" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-fyodorpizza.usecases.get_menu">
+<span id="fyodorpizza-usecases-get-menu-module"></span><h2>fyodorpizza.usecases.get_menu module<a class="headerlink" href="#module-fyodorpizza.usecases.get_menu" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="fyodorpizza.usecases.getMenu.GetMenu">
-<em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.usecases.getMenu.</code><code class="sig-name descname">GetMenu</code><a class="headerlink" href="#fyodorpizza.usecases.getMenu.GetMenu" title="Permalink to this definition">¶</a></dt>
+<dt id="fyodorpizza.usecases.get_menu.GetMenu">
+<em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.usecases.get_menu.</code><code class="sig-name descname">GetMenu</code><a class="headerlink" href="#fyodorpizza.usecases.get_menu.GetMenu" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Gets menu - a list of all <a class="reference internal" href="glossary.html#term-pizza"><span class="xref std std-term">Pizza</span></a>.</p>
 <div class="highlight-gherkin notranslate"><div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Full list of pizzas (menu)</span>
@@ -71,11 +71,11 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-fyodorpizza.usecases.getStatistics">
-<span id="fyodorpizza-usecases-getstatistics-module"></span><h2>fyodorpizza.usecases.getStatistics module<a class="headerlink" href="#module-fyodorpizza.usecases.getStatistics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-fyodorpizza.usecases.get_statistics">
+<span id="fyodorpizza-usecases-get-statistics-module"></span><h2>fyodorpizza.usecases.get_statistics module<a class="headerlink" href="#module-fyodorpizza.usecases.get_statistics" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="fyodorpizza.usecases.getStatistics.GetStatistics">
-<em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.usecases.getStatistics.</code><code class="sig-name descname">GetStatistics</code><a class="headerlink" href="#fyodorpizza.usecases.getStatistics.GetStatistics" title="Permalink to this definition">¶</a></dt>
+<dt id="fyodorpizza.usecases.get_statistics.GetStatistics">
+<em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.usecases.get_statistics.</code><code class="sig-name descname">GetStatistics</code><a class="headerlink" href="#fyodorpizza.usecases.get_statistics.GetStatistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Gets statistics on <a class="reference internal" href="glossary.html#term-pizza"><span class="xref std std-term">Pizza</span></a> ordered today.</p>
 <div class="highlight-gherkin notranslate"><div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Ordered pizzas statistics</span>
@@ -96,11 +96,11 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-fyodorpizza.usecases.postOrder">
-<span id="fyodorpizza-usecases-postorder-module"></span><h2>fyodorpizza.usecases.postOrder module<a class="headerlink" href="#module-fyodorpizza.usecases.postOrder" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-fyodorpizza.usecases.post_order">
+<span id="fyodorpizza-usecases-post-order-module"></span><h2>fyodorpizza.usecases.post_order module<a class="headerlink" href="#module-fyodorpizza.usecases.post_order" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="fyodorpizza.usecases.postOrder.PostOrder">
-<em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.usecases.postOrder.</code><code class="sig-name descname">PostOrder</code><a class="headerlink" href="#fyodorpizza.usecases.postOrder.PostOrder" title="Permalink to this definition">¶</a></dt>
+<dt id="fyodorpizza.usecases.post_order.PostOrder">
+<em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.usecases.post_order.</code><code class="sig-name descname">PostOrder</code><a class="headerlink" href="#fyodorpizza.usecases.post_order.PostOrder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Posts new <a class="reference internal" href="glossary.html#term-order"><span class="xref std std-term">Order</span></a>.</p>
 <div class="highlight-gherkin notranslate"><div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Order pizza(s)</span>
@@ -146,18 +146,56 @@
 <dt id="fyodorpizza.tests.GetMenuTest">
 <em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.tests.</code><code class="sig-name descname">GetMenuTest</code><span class="sig-paren">(</span><em class="sig-param">methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.tests.GetMenuTest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="fyodorpizza.tests.GetMenuTest.setUp">
+<code class="sig-name descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.tests.GetMenuTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fyodorpizza.tests.GetMenuTest.test_can_get_menu">
+<code class="sig-name descname">test_can_get_menu</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.tests.GetMenuTest.test_can_get_menu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="fyodorpizza.tests.GetStatisticsTest">
 <em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.tests.</code><code class="sig-name descname">GetStatisticsTest</code><span class="sig-paren">(</span><em class="sig-param">methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.tests.GetStatisticsTest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="fyodorpizza.tests.GetStatisticsTest.setUp">
+<code class="sig-name descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.tests.GetStatisticsTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fyodorpizza.tests.GetStatisticsTest.test_can_get_statistics">
+<code class="sig-name descname">test_can_get_statistics</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.tests.GetStatisticsTest.test_can_get_statistics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="fyodorpizza.tests.PostOrderTest">
 <em class="property">class </em><code class="sig-prename descclassname">fyodorpizza.tests.</code><code class="sig-name descname">PostOrderTest</code><span class="sig-paren">(</span><em class="sig-param">methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.tests.PostOrderTest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="fyodorpizza.tests.PostOrderTest.setUp">
+<code class="sig-name descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.tests.PostOrderTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fyodorpizza.tests.PostOrderTest.test_can_post_order">
+<code class="sig-name descname">test_can_post_order</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.tests.PostOrderTest.test_can_post_order" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="fyodorpizza.tests.PostOrderTest.test_cannot_post_invalid_order">
+<code class="sig-name descname">test_cannot_post_invalid_order</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fyodorpizza.tests.PostOrderTest.test_cannot_post_invalid_order" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -193,9 +231,9 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">fyodorpizza package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.usecases.getMenu">fyodorpizza.usecases.getMenu module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.usecases.getStatistics">fyodorpizza.usecases.getStatistics module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.usecases.postOrder">fyodorpizza.usecases.postOrder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.usecases.get_menu">fyodorpizza.usecases.get_menu module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.usecases.get_statistics">fyodorpizza.usecases.get_statistics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.usecases.post_order">fyodorpizza.usecases.post_order module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.admin">fyodorpizza.admin module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.apps">fyodorpizza.apps module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-fyodorpizza.models">fyodorpizza.models module</a></li>

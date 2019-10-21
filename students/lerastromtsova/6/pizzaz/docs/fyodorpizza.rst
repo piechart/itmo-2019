@@ -11,28 +11,28 @@ Subpackages
 Submodules
 ----------
 
-fyodorpizza.usecases.getMenu module
------------------------------------
+fyodorpizza.usecases.get_menu module
+------------------------------------
 
-.. automodule:: fyodorpizza.usecases.getMenu
+.. automodule:: fyodorpizza.usecases.get_menu
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-fyodorpizza.usecases.getStatistics module
------------------------------------------
+fyodorpizza.usecases.get_statistics module
+------------------------------------------
 
-.. automodule:: fyodorpizza.usecases.getStatistics
+.. automodule:: fyodorpizza.usecases.get_statistics
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-fyodorpizza.usecases.postOrder module
--------------------------------------
+fyodorpizza.usecases.post_order module
+--------------------------------------
 
-.. automodule:: fyodorpizza.usecases.postOrder
+.. automodule:: fyodorpizza.usecases.post_order
    :members:
    :undoc-members:
    :show-inheritance:
