@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 class GetStatistics(object):
     """
        Gets statistics on :term:`Pizza` ordered today.

@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 class GetMenu(object):
     """
        Gets menu - a list of all :term:`Pizza`.

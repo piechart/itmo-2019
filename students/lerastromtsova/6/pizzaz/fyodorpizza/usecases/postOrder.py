@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 class PostOrder(object):
     """
        Posts new :term:`Order`.
