@@ -4,6 +4,8 @@ from django.test import TestCase
 from django.test import Client
 from .models import Ingredient, Pizza, Order
 from decimal import Decimal
+from .serializers import PizzaSerializer
+import json
 
 
 OK = 200
@@ -54,8 +56,13 @@ class GetMenuTest(TestCase):
 
     def test_can_get_menu(self):
         """Check that API returns list of :term:`Pizza`."""
-        response = self.client.get(path='/api/pizza')
-        assert response.status_code == OK
+        response = self.client.get(path='/api/pizza/')
+        assert response.status_code == 200
+
+        pizzaserializer = PizzaSerializer([self.pizza], many=True)
+        ser_data = json.dumps(pizzaserializer.data)
+        resp_data = response.content.decode()
+        assert ser_data == resp_data
 
 
 class PostOrderTest(TestCase):
@@ -73,27 +80,35 @@ class PostOrderTest(TestCase):
 
     def test_can_post_order(self):
         """Make POST request and assert that :term:`Order` is saved in database and email is sent."""
-        response = self.client.post(path='api/order',
+        response = self.client.post(path='/api/order/',
                                     data={
                                         'status': 'accept',
                                         'pizza_list': [self.pizza.pk],
                                         'delivery_address': 'Petrogradskaya emb., 36A, Saint Petersburg, Russia',
                                         'client_email': 'v.stromtsova@yandex.ru',
                                     })
-        assert response.status_code == OK
+        assert response.status_code == 201
+
         # assert saving to db
+        resp_data = json.loads(response.content.decode())
+        order = Order.objects.get(pk=resp_data['id'])
+        assert order
+
         # assert email_is_sent on order
+        assert order.email_is_sent
+
         # assert cooking time
 
     def test_cannot_post_invalid_order(self):
         """Make POST request with invalid params and assert that :term:`Order` is not saved in database."""
-        response = self.client.post(path='api/order',
+        response = self.client.post(path='/api/order/',
                                     data={
                                         'pizza_list': [],
                                         'delivery_address': 'Petrogradskaya emb., 36A, Saint Petersburg, Russia',
                                         'client_email': 'v.stromtsova@yandex.ru',
                                     })
-        assert response.status_code == OK  # seems like Django returns 200 even if params are invalid
+
+        assert response.status_code == 400
         # assert order not saved to db
 
 
@@ -117,6 +132,7 @@ class GetStatisticsTest(TestCase):
 
     def test_can_get_statistics(self):
         """Make GET request and check status code and :term:`Pizza` list."""
-        response = self.client.get(path='/api/statistics/pizza')
-        assert response.status_code == OK
+        response = self.client.get(path='/api/statistics/pizza/')
+
+        assert response.status_code == 200
         # assert that received list matches list of pizzas in order
