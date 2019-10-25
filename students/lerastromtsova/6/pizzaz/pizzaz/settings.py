@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Django settings for pizzaz project.
 
@@ -13,34 +15,36 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+NAME = 'NAME'
+dname = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(dname)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'u+@rhiylv1-*pnehi*i3t)0w2(-z3^jikskl71rqgfovk01w1i'
+SECRET_KEY = 'u+@rhiylv1-*pnehi*i3t)0w2(-z3^jikskl71rqgfovk01w1i'  # noqa: S105
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []  # noqa: WPS407
 
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [  # noqa: WPS407
+    'fyodorpizza',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'fyodorpizza',
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE = [  # noqa: WPS407
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,7 +56,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'pizzaz.urls'
 
-TEMPLATES = [
+TEMPLATES = [  # noqa: WPS407
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
@@ -74,29 +78,35 @@ WSGI_APPLICATION = 'pizzaz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
+DATABASES = {  # noqa: WPS407
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        NAME: os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
+P_VALIDATION = 'django.contrib.auth.password_validation'
+
+AUTH_PASSWORD_VALIDATORS = [  # noqa: WPS407
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        NAME:
+            '{0}.UserAttributeSimilarityValidator'.format(P_VALIDATION),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        NAME:
+            '{0}.MinimumLengthValidator'.format(P_VALIDATION),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        NAME:
+            '{0}.CommonPasswordValidator'.format(P_VALIDATION),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        NAME:
+            '{0}.NumericPasswordValidator'.format(P_VALIDATION),
     },
 ]
 
@@ -119,3 +129,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# SMTP settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'test.stromtsova@gmail.com'
+EMAIL_HOST_PASSWORD = 'goGqip-wemsim-6cebba'  # noqa: S105
+
+DEFAULT_FROM_EMAIL = 'test.stromtsova@gmail.com'
+SERVER_EMAIL = 'test.stromtsova@gmail.com'
