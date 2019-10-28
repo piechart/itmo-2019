@@ -5,7 +5,6 @@ from decimal import Decimal
 from random import randint
 
 from django.test import Client, TestCase
-
 from fyodorpizza.models import Ingredient, Order, Pizza
 from fyodorpizza.response_codes import BAD_REQUEST, CREATED, OK
 from fyodorpizza.usecases.get_menu import GetMenu

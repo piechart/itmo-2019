@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from rest_framework import serializers
-
 from fyodorpizza.models import Ingredient, Order, Pizza
 
 
