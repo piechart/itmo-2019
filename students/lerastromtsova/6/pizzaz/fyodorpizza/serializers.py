@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from rest_framework import serializers
-from fyodorpizza.models import Ingredient, Order, Pizza
+from fyodorpizza import models
 
 
 class PizzaSerializer(serializers.ModelSerializer):
@@ -10,7 +10,7 @@ class PizzaSerializer(serializers.ModelSerializer):
     class Meta(object):
         """Serializer setup."""
 
-        model = Pizza
+        model = models.Pizza
         fields = '__all__'
 
 
@@ -20,7 +20,7 @@ class IngredientSerializer(serializers.ModelSerializer):
     class Meta(object):
         """Serializer setup."""
 
-        model = Ingredient
+        model = models.Ingredient
         fields = '__all__'
 
 
@@ -30,5 +30,5 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta(object):
         """Serializer setup."""
 
-        model = Order
+        model = models.Order
         fields = '__all__'
