@@ -37,15 +37,6 @@ fyodorpizza.usecases.post_order module
    :undoc-members:
    :show-inheritance:
 
-
-fyodorpizza.admin module
-------------------------
-
-.. automodule:: fyodorpizza.admin
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 fyodorpizza.apps module
 -----------------------
 
@@ -62,10 +53,10 @@ fyodorpizza.models module
    :undoc-members:
    :show-inheritance:
 
-fyodorpizza.tests module
-------------------------
+fyodorpizza.test_s module
+-------------------------
 
-.. automodule:: fyodorpizza.tests
+.. automodule:: fyodorpizza.test_s
    :members:
    :undoc-members:
    :show-inheritance:

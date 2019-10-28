@@ -2,6 +2,7 @@
 
 import json
 from decimal import Decimal
+from random import randint
 
 from django.test import Client, TestCase
 
@@ -132,27 +133,48 @@ class GetStatisticsTest(TestCase):
     """Tests get_statistics usecase."""
 
     client = Client()
+    # random is ok for tests i think
+    order_num = randint(1, 10)  # noqa: S311
 
     def setUp(self):
         """Make test :term:`Order`."""
-        self.order = create_test_order(
-            pizza_list=[
-                create_test_pizza(
-                    name='Sausage with tomato',
-                    price=TEST_PRICE_DEC,
-                    ingredient_list=[
-                        create_test_ingredient('tomato'),
-                        create_test_ingredient('sausage'),
-                    ],
-                ),
-            ],
-            delivery_address=TEST_ADDRESS,
-            client_email=TEST_EMAIL,
-        )
+        tomato = create_test_ingredient('tomato')
+        sausage = create_test_ingredient('sausage')
+        for onum in range(self.order_num):
+            create_test_order(
+                pizza_list=[
+                    create_test_pizza(
+                        name=str(onum),
+                        price=TEST_PRICE_DEC,
+                        ingredient_list=[
+                            tomato,
+                            sausage,
+                        ],
+                    ),
+                ],
+                delivery_address=TEST_ADDRESS,
+                client_email=TEST_EMAIL,
+            )
 
     def test_can_get_statistics(self):
         """Make GET request and check status code and :term:`Pizza` list."""
         response = self.client.get(path='/api/statistics/pizza/')
 
         assert response.status_code == OK
+
         # assert that received list matches list of pizzas in order
+        resp_data = json.loads(response.content.decode())
+        expected = {
+            'all': self.order_num,
+            'by_status': {
+                'accept': self.order_num,
+                'preparation': 0,
+                'delivery': 0,
+                'done': 0,
+            },
+            'by_pizza': {
+                str(onum + 1): 1 for onum in range(self.order_num)
+            },
+        }
+
+        assert resp_data == expected
