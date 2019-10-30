@@ -71,6 +71,14 @@ version = "0.3.9"
 
 [[package]]
 category = "dev"
+description = "Django web applications framework."
+name = "django"
+optional = false
+python-versions = ">=3.5"
+version = "2.2.6"
+
+[[package]]
+category = "dev"
 description = "Docutils -- Python Documentation Utilities"
 name = "docutils"
 optional = false
