@@ -29,7 +29,7 @@ SECRET_KEY = 'u+@rhiylv1-*pnehi*i3t)0w2(-z3^jikskl71rqgfovk01w1i'  # noqa: S105
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []  # noqa: WPS407
+ALLOWED_HOSTS = ['testserver']  # noqa: WPS407
 
 
 # Application definition

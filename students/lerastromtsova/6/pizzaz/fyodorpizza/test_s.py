@@ -4,6 +4,7 @@ import json
 from decimal import Decimal
 from random import randint
 
+import pytest
 from django.test import Client, TestCase
 
 from fyodorpizza.models import Ingredient, Order, Pizza
@@ -75,6 +76,7 @@ class GetMenuTest(TestCase):
         assert ser_data == resp_data
 
 
+@pytest.mark.remote_data
 class PostOrderTest(TestCase):
     """Tests post_order usecase."""
 
