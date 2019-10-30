@@ -18,7 +18,6 @@ TEST_PRICE = 1
 TEST_PRICE_DEC = Decimal(TEST_PRICE)
 
 
-@pytest.mark.django_db
 def create_test_ingredient(name):
     """Creates :term:`Ingredient` object for test purposes."""
     ingredient = Ingredient(name=name)
@@ -26,7 +25,6 @@ def create_test_ingredient(name):
     return ingredient
 
 
-@pytest.mark.django_db
 def create_test_pizza(name, price, ingredient_list):
     """Creates :term:`Pizza` object for test purposes."""
     pizza = Pizza(
@@ -38,7 +36,6 @@ def create_test_pizza(name, price, ingredient_list):
     return pizza
 
 
-@pytest.mark.django_db
 def create_test_order(pizza_list, delivery_address, client_email):
     """Creates :term:`Order` object for test purposes."""
     order = Order(
