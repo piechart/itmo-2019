@@ -1,0 +1,11 @@
+[flake8]
+ignore=WPS226,D104,WPS102,D401,D100,F403,WPS404,WPS432,F405,I003,I001,E302,D103,WPS300,WPS437,E501,WPS212,WPS210,WPS430,WPS210
+exclude=
+  piepizza/*,
+  manage.py,
+  myscript.py,
+  main/migrations/*,
+  __init__.py,
+  main/admin.py,
+  main/apps.py,
+  main/models.py

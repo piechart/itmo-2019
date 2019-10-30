@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.test import TestCase
 from django.http import HttpRequest
 
@@ -7,21 +9,25 @@ from ..views import api
 from ..tests import shared_tests_logic
 
 class TestStats(TestCase):
+    """Tests."""
 
     def decode_json(self, json_response):
+        """Decode."""
         return json_response._container[0].decode('utf-8')
 
     def test_empty_stats(self):
+        """Test."""
         res = api.stats(HttpRequest())
         self.assertEqual(self.decode_json(res), '{"total_orders": 0, "accepted_orders": 0, "cooking_orders": 0, "delivery_orders": 0, "completed_orders": 0, "ordered_pizzas": []}')
 
     def test_accepted_stats(self):
+        """Test."""
         pizza = shared_tests_logic.make_test_data()
-        
+
         order = Order(
             delivery_address='address',
             customer_email='e@ma.il',
-            status=OrderType.ACCEPTED
+            status=OrderType.ACCEPTED,
         )
         order.save()
         order.pizzas = [pizza]
