@@ -1,0 +1,25 @@
+dist: xenial
+
+jobs:
+  include:
+    # Python code quality:
+    - language: python
+      python: 3.7
+      before_install:
+        - pip freeze | xargs pip uninstall -y
+        - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+        - source "$HOME/.poetry/env"
+      install: poetry install
+      script:
+        - make test
+
+    # Linting danger, code duplicates, and markdown:
+    - language: node_js
+      node_js: 10.16
+      install: npm install
+      script: npm run test
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
