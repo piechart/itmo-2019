@@ -14,6 +14,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+import django
+
+django.setup()
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 NAME = 'NAME'
 dname = os.path.dirname(os.path.abspath(__file__))
