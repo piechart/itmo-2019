@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.http import JsonResponse
+
 from fyodorpizza.response_codes import BAD_REQUEST, CREATED
 from fyodorpizza.usecases.get_menu import GetMenu
 from fyodorpizza.usecases.get_statistics import GetStatistics

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.urls import path
+
 from fyodorpizza.views import get_pizza, get_statistics, post_order
 
 urlpatterns = [

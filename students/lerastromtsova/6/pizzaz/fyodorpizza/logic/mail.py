@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.core.mail import send_mail
+
 from fyodorpizza.logic.cooking import count_cooking_time
 from fyodorpizza.models import Order
 
