@@ -1,0 +1,24 @@
+Pizza: food entity
+  - title: title of pizza (str)
+  - price: price of pizza represented by unspecified currency (int)
+  - ingredients: ingredients used to cook this pizza (set of ingredients)
+
+Ingredient: food entity
+  - title: title of ingredient used in pizza's recipe (str)
+
+Order: logistical entity
+  - place_date: date when order was created (date)
+  - pizzas: list of pizzas in the order (array of Pizza)
+  - delivery_address: address where order should be delivered (str)
+  - customer_email: customer contact email (str)
+  - status: current status of that order (enum: ACCEPTED/COOKING/DELIVERY/COMPLETED)
+
+API:
+  - get_pizzas()
+  Lists currently available pizzas for the customer to choose from
+
+  - create_order()
+  Lets customer to place an order by selecting pizzas they wish to receive, filling delivery address and contact email
+
+  - stats()
+  Provides statistical report of the day request was made if specific date is not provided for pizzeria manager.

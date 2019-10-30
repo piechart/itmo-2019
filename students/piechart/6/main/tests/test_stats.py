@@ -4,6 +4,8 @@ from django.http import HttpRequest
 from ..models import *
 from ..views import api
 
+from ..tests import shared_tests_logic
+
 class TestStats(TestCase):
 
     def decode_json(self, json_response):
@@ -14,14 +16,8 @@ class TestStats(TestCase):
         self.assertEqual(self.decode_json(res), '{"total_orders": 0, "accepted_orders": 0, "cooking_orders": 0, "delivery_orders": 0, "completed_orders": 0, "ordered_pizzas": []}')
 
     def test_accepted_stats(self):
-        cheese = Ingredient(title='Cheese')
-        cheese.save()
-
-        pizza = Pizza(id=1, title='CheesyPizza', price=10)
-        pizza.save()
-
-        pizza.ingredients = [cheese]
-
+        pizza = shared_tests_logic.make_test_data()
+        
         order = Order(
             delivery_address='address',
             customer_email='e@ma.il',

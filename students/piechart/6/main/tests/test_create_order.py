@@ -4,16 +4,12 @@ from django.http import HttpRequest
 from ..models import *
 from ..views import api
 
+from ..tests import shared_tests_logic
+
 class TestCreateOrder(TestCase):
 
     def setUp(self):
-        cheese = Ingredient(title='Cheese')
-        cheese.save()
-
-        pizza = Pizza(id=1, title='CheesyPizza', price=10)
-        pizza.save()
-
-        pizza.ingredients = [cheese]
+        shared_tests_logic.make_test_data()
 
     def decode_json(self, json_response):
         return json_response._container[0].decode('utf-8')

@@ -3,6 +3,8 @@ from django.test import TestCase
 from ..models import *
 from ..views import api
 
+from ..tests import shared_tests_logic
+
 class TestGetPizzas(TestCase):
 
     def decode_json(self, json_response):
@@ -12,12 +14,5 @@ class TestGetPizzas(TestCase):
         self.assertEqual(self.decode_json(api.get_pizzas()), '{"pizzas": []}')
 
     def test_get_pizzas(self):
-        cheese = Ingredient(title='Cheese')
-        cheese.save()
-
-        pizza = Pizza(id=1, title='CheesyPizza', price=10)
-        pizza.save()
-
-        pizza.ingredients = [cheese]
-
+        shared_tests_logic.make_test_data()
         self.assertEqual(self.decode_json(api.get_pizzas()), '{"pizzas": [{"id": 1, "title": "CheesyPizza", "price": 10, "ingredients": [{"id": 1, "title": "Cheese"}]}]}')
