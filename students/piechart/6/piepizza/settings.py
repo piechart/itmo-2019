@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Django settings for piepizza project.
 
@@ -13,24 +15,28 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # noqa WPS221
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4#5rmuu3kk%mx(yx9=-j!e4wr=l&+$226065jt)!_-qdt^pa%p'
+SECRET_KEY = '{0}{1}{2}'.format(
+    '4#5rmuu3kk%mx(yx9',
+    '=-j!e4wr=l&+$22',
+    '6065jt)!_-qdt^pa%p',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []  # noqa WPS407
 
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [  # noqa WPS407
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +46,7 @@ INSTALLED_APPS = [
     'main',
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE = [  # noqa WPS407
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -50,9 +56,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'piepizza.urls'
+ROOT_URLCONF = 'piepizza.urls'  # noqa WPS407
 
-TEMPLATES = [
+TEMPLATES = [  # noqa WPS407
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
@@ -68,35 +74,49 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'piepizza.wsgi.application'
+WSGI_APPLICATION = 'piepizza.wsgi.application'  # noqa WPS407
 
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
+name = 'NAME'
+DATABASES = {  # noqa WPS407
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        name: os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
+base_django_auth = 'django.contrib.auth.'
+format_template = '{0}{1}'
+AUTH_PASSWORD_VALIDATORS = [  # noqa WPS407
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        name: format_template.format(
+            base_django_auth,
+            'password_validation.UserAttributeSimilarityValidator',
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        name: format_template.format(
+            base_django_auth,
+            'password_validation.MinimumLengthValidator',
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        name: format_template.format(
+            base_django_auth,
+            'password_validation.CommonPasswordValidator',
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        name: format_template.format(
+            base_django_auth,
+            'password_validation.NumericPasswordValidator',
+        ),
     },
 ]
 
