@@ -9,6 +9,7 @@ license = "MIT"
 python = "^3.7"
 requests = "^2.22"
 django = "^2.2"
+djangorestframework = "^3.10"
 
 [tool.poetry.dev-dependencies]
 wemake-python-styleguide = "^0.12.5"
