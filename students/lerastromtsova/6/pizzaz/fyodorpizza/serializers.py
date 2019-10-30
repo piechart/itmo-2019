@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from fyodorpizza import models
 from rest_framework import serializers
+
+from fyodorpizza import models
 
 
 class PizzaSerializer(serializers.ModelSerializer):
