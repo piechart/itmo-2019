@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []  # noqa: WPS407
 # Application definition
 
 INSTALLED_APPS = [  # noqa: WPS407
+    'pizzaz',
     'fyodorpizza',
     'django.contrib.admin',
     'django.contrib.auth',
