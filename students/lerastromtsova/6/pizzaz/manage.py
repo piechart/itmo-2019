@@ -5,10 +5,13 @@
 import os
 import sys
 
+import django
+
 
 def main():
     """Main function for manage.py."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pizzaz.settings')
+    django.setup()
     try:
         from django.core.management import execute_from_command_line  # noqa: WPS433, E501
     except ImportError as exc:

@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import os
-
 from django.db import models
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pizzaz.settings')
 
 letter_s = 'S'
 letter_m = 'M'  # I do this stupid thing because of flake8
