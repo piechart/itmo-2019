@@ -6,10 +6,10 @@ from datetime import date
 from enum import Enum
 
 class OrderType(Enum):
-    ACCEPTED = "ACCEPTED"
-    COOKING = "COOKING"
-    DELIVERY = "DELIVERY"
-    COMPLETED = "COMPLETED"
+    ACCEPTED = 'ACCEPTED'
+    COOKING = 'COOKING'
+    DELIVERY = 'DELIVERY'
+    COMPLETED = 'COMPLETED'
 
     def __str__(self):
         return self.value
@@ -19,8 +19,8 @@ class Ingredient(models.Model):
 
     def as_dict(self):
         return {
-            "id": self.pk,
-            "title": self.title
+            'id': self.pk,
+            'title': self.title
         }
 
 class Pizza(models.Model):
@@ -29,11 +29,14 @@ class Pizza(models.Model):
     ingredients = models.ManyToManyField(Ingredient)
 
     def as_dict(self):
+        ingredients = self.ingredients.all()
         return {
-            "id": self.pk,
-            "title": self.title,
-            "price": self.price,
-            "ingredients": [ingredient.as_dict() for ingredient in self.ingredients.all()]
+            'id': self.pk,
+            'title': self.title,
+            'price': self.price,
+            'ingredients': [
+                ingredient.as_dict() for ingredient in ingredients
+            ]
         }
 
 class Order(models.Model):
@@ -43,14 +46,20 @@ class Order(models.Model):
     customer_email = models.CharField(max_length=64)
     status = models.CharField(
         max_length=16,
-        choices=[(st.value, st.value) for st in OrderType]
+        choices=[
+            (orderType.value, orderType.value) for orderType in OrderType
+        ]
     )
 
     def as_dict(self):
+        pizzas = self.pizzas.all()
         return {
-            "place_date": self.place_date,
-            "pizzas": [pizza.as_dict() for pizza in self.pizzas.all()],
-            "delivery_address": self.delivery_address,
-            "customer_email": self.customer_email,
-            "status": str(self.status[1])
+            'id': self.pk,
+            'place_date': self.place_date,
+            'pizzas': [
+                pizza.as_dict() for pizza in pizzas
+            ],
+            'delivery_address': self.delivery_address,
+            'customer_email': self.customer_email,
+            'status': str(self.status[1])
         }

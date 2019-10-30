@@ -1,4 +1,4 @@
 from main.models import *
+from main.views import api
 
-orders = Order.objects.filter(status=OrderType.COOKING)
-print(orders)
+print(api.notify_customer())
