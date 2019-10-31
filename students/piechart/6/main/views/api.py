@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 
 from django.http import JsonResponse
-from main.models import *
-from main.services import notification_service, order_service, date_service
+
+from main.models import Order, OrderType, Pizza
+from main.services import date_service, notification_service, order_service
+
+RESULT = 'result'
+ERROR = 'error'
 
 
-def get_pizzas():
+def get_pizzas(request):
     """Returns pizzas list."""
     response = {
         'pizzas': [
-            pizza.as_dict() for pizza in Pizza.objects.all()  # noqa F405
+            pizza.as_dict() for pizza in Pizza.objects.all()
         ],
     }
     return JsonResponse(response)
@@ -18,7 +22,7 @@ def get_pizzas():
 def create_order(request):  # noqa WPS210, WPS212
     """Creates order."""
     def resolve_pizza(pizza_title):  # noqa WPS430
-        pizza = Pizza.objects.get(title=pizza_title)  # noqa F405
+        pizza = Pizza.objects.get(title=pizza_title)
         if pizza is not None:
             return pizza
         return None
@@ -28,15 +32,15 @@ def create_order(request):  # noqa WPS210, WPS212
 
     if not address or not email:
         return JsonResponse({
-            'result': 'error',
-            'error': 'no address or email provided',
+            RESULT: ERROR,
+            ERROR: 'no address or email provided',
         })
 
     pizza_titles = request.POST.get('pizzas')
     if not pizza_titles:
         return JsonResponse({
-            'result': 'error',
-            'error': 'no pizzas provided',
+            RESULT: ERROR,
+            ERROR: 'no pizzas provided',
         })
 
     pizza_titles = pizza_titles.split(',')
@@ -44,23 +48,23 @@ def create_order(request):  # noqa WPS210, WPS212
     pizzas = [pizza for pizza in pizza_items if pizza is not None]
     if not pizzas:
         return JsonResponse({
-            'result': 'error',
-            'error': 'no valid pizzas provided',
+            RESULT: ERROR,
+            ERROR: 'no valid pizzas provided',
         })
 
-    order = Order(  # noqa F405
+    order = Order(
         place_date=date_service.date_object(date_service.today()),
         delivery_address=address,
         customer_email=email,
-        status=OrderType.ACCEPTED,  # noqa F405
+        status=OrderType.ACCEPTED,
     )
     order.save()
-    order.pizzas = pizzas
+    order.pizzas.set(pizzas)
 
     notification_service.notify_customer()
 
     return JsonResponse({
-        'result': 'success',
+        RESULT: 'success',
         'order_id': order.pk,
     })
 
@@ -71,25 +75,25 @@ def stats(request):  # noqa WPS210
         date = date_service.date_object(request.GET.get('date'))
     else:
         date = date_service.today()
-    orders = Order.objects.filter(place_date=date)  # noqa F405
+    orders = Order.objects.filter(place_date=date)
 
     res = {
         'total_orders': len(orders),
         'accepted_orders': order_service.count_by_status(
             orders,
-            OrderType.ACCEPTED,  # noqa F405
+            OrderType.ACCEPTED,
         ),
         'cooking_orders': order_service.count_by_status(
             orders,
-            OrderType.COOKING,  # noqa F405
+            OrderType.COOKING,
         ),
         'delivery_orders': order_service.count_by_status(
             orders,
-            OrderType.DELIVERY,  # noqa F405
+            OrderType.DELIVERY,
         ),
         'completed_orders': order_service.count_by_status(
             orders,
-            OrderType.COMPLETED,  # noqa F405
+            OrderType.COMPLETED,
         ),
     }
 

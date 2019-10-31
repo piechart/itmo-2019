@@ -1,27 +1,34 @@
 # -*- coding: utf-8 -*-
 
-from django.test import TestCase
 from django.http import HttpRequest
+from django.test import TestCase
 
-from ..views import api
+from main.tests import shared_tests_logic
+from main.views import api
+from main.models import Order  # noqa I001
 
-from ..tests import shared_tests_logic
 
 class TestCreateOrder(TestCase):
     """Tests."""
 
     def setUp(self):
         """SetUp."""
+        Order.objects.all().delete()
         shared_tests_logic.make_test_data()
 
     def decode_json(self, json_response):
         """Decode."""
-        return json_response._container[0].decode('utf-8')
+        return json_response._container[0].decode('utf-8')  # noqa WPS437
 
     def test_create_order_no_data(self):
         """Test."""
         res = api.create_order(HttpRequest())
-        self.assertEqual(self.decode_json(res), '{"result": "error", "error": "no address or email provided"}')
+
+        valid_result = '{0}{1}'.format(
+            '{"result": "error", ',
+            '"error": "no address or email provided"}',
+        )
+        self.assertEqual(self.decode_json(res), valid_result)
 
     def test_create_order_no_pizza(self):
         """Test."""
@@ -31,7 +38,11 @@ class TestCreateOrder(TestCase):
             'email': 'email',
         }
         res = api.create_order(req)
-        self.assertEqual(self.decode_json(res), '{"result": "error", "error": "no pizzas provided"}')
+        valid_result = '{0}{1}'.format(
+            '{"result": "error", ',
+            '"error": "no pizzas provided"}',
+        )
+        self.assertEqual(self.decode_json(res), valid_result)
 
     def test_create_order_successful(self):
         """Test."""
@@ -42,4 +53,6 @@ class TestCreateOrder(TestCase):
             'pizzas': 'CheesyPizza',
         }
         res = api.create_order(req)
-        self.assertEqual(self.decode_json(res), '{"result": "success", "order_id": 1}')
+        req_res = self.decode_json(res)
+        self.assertTrue('success' in req_res)
+        self.assertTrue('order_id' in req_res)

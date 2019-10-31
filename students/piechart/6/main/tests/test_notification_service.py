@@ -1,21 +1,25 @@
 # -*- coding: utf-8 -*-
 
 from django.test import TestCase
-from ..services import notification_service
-from ..models import *
 
-class Testnotification_service(TestCase):
+from main.models import Order, OrderType, Pizza
+from main.services import notification_service
+
+
+class TestNotificationService(TestCase):
     """Tests."""
 
     def setUp(self):
         """SetUp."""
+        Order.objects.filter(status=OrderType.COOKING).delete()
+
         pizza = Pizza(id=1, title='CheesyPizza', price=10)
         pizza.save()
 
         order = Order()
         order.status = OrderType.COOKING
         order.save()
-        order.pizzas = [pizza]
+        order.pizzas.set([pizza])
 
     def test_cooking_pizzas_count(self):
         """Test."""
@@ -23,5 +27,10 @@ class Testnotification_service(TestCase):
 
     def test_delivery_time_estimation(self):
         """Test."""
-        self.assertEqual(notification_service.notify_customer(hour=2), 'order will be delivered in 70 minutes')
-        self.assertEqual(notification_service.notify_customer(hour=14), 'order will be delivered in 50 minutes')
+        delivery70 = 'order will be delivered in 70 minutes'
+        r1 = notification_service.notify_customer(hour=2)
+        self.assertEqual(r1, delivery70)
+        delivery50 = 'order will be delivered in 50 minutes'
+        hours = 14
+        r2 = notification_service.notify_customer(hour=hours)
+        self.assertEqual(r2, delivery50)

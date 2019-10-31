@@ -1,34 +1,48 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 
-from django.db import models
 from datetime import date
 from enum import Enum
 
+from django.db import models
+
+
 class OrderType(Enum):
-    ACCEPTED = 'ACCEPTED'
-    COOKING = 'COOKING'
-    DELIVERY = 'DELIVERY'
-    COMPLETED = 'COMPLETED'
+    """Useful class313."""
+
+    ACCEPTED = 'ACCEPTED'  # noqa WPS115
+    COOKING = 'COOKING'  # noqa WPS115
+    DELIVERY = 'DELIVERY'  # noqa WPS115
+    COMPLETED = 'COMPLETED'  # noqa WPS115
 
     def __str__(self):
+        """Useful func1."""
         return self.value
 
+
 class Ingredient(models.Model):
-    title = models.CharField(max_length=64)
+    """Useful class2."""
+
+    ml1 = 64
+    title = models.CharField(max_length=ml1)
 
     def as_dict(self):
+        """Useful func12."""
         return {
             'id': self.pk,
-            'title': self.title
+            'title': self.title,
         }
 
+
 class Pizza(models.Model):
-    title = models.CharField(max_length=64)
+    """Useful class312."""
+
+    m1 = 64
+    title = models.CharField(max_length=m1)
     price = models.IntegerField()
     ingredients = models.ManyToManyField(Ingredient)
 
     def as_dict(self):
+        """Useful func2314."""
         ingredients = self.ingredients.all()
         return {
             'id': self.pk,
@@ -36,22 +50,29 @@ class Pizza(models.Model):
             'price': self.price,
             'ingredients': [
                 ingredient.as_dict() for ingredient in ingredients
-            ]
+            ],
         }
 
+
 class Order(models.Model):
+    """Useful class1344."""
+
     place_date = models.DateField(default=date.today)
     pizzas = models.ManyToManyField(Pizza)
-    delivery_address = models.CharField(max_length=128)
-    customer_email = models.CharField(max_length=64)
+    m1 = 126
+    m2 = 64
+    delivery_address = models.CharField(max_length=m1)
+    customer_email = models.CharField(max_length=m2)
+    m3 = 16
     status = models.CharField(
-        max_length=16,
+        max_length=m3,
         choices=[
-            (orderType.value, orderType.value) for orderType in OrderType
-        ]
+            (ord_type.value, ord_type.value) for ord_type in OrderType
+        ],
     )
 
     def as_dict(self):
+        """Useful func1431."""
         pizzas = self.pizzas.all()
         return {
             'id': self.pk,
@@ -61,5 +82,5 @@ class Order(models.Model):
             ],
             'delivery_address': self.delivery_address,
             'customer_email': self.customer_email,
-            'status': str(self.status[1])
+            'status': str(self.status[1]),
         }
