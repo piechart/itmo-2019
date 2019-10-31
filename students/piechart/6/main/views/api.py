@@ -1,13 +1,15 @@
-# -*- coding: utf-8 -*-  # noqa E902
+# -*- coding: utf-8 -*-
 
 from django.http import JsonResponse  # noqa I003
-from typing import Dict, Any, Tuple  # noqa I001
+from typing import Dict, Any  # noqa I001
 
 from main.models import Order, OrderType, Pizza
 from main.services import date_service, notification_service, order_service
 
 RESULT = 'result'
 ERROR = 'error'
+
+# type: ignore  # noqa E800
 
 
 def get_pizzas(request) -> JsonResponse:
@@ -75,7 +77,7 @@ def stats(request) -> JsonResponse:  # noqa WPS210
         date = date_service.today()
     orders = Order.objects.filter(place_date=date)
 
-    res: Dict[str, Tuple[int, Dict[str, Tuple[str, int]]]] = {  # noqa WPS221
+    res: Dict[str, Any] = {
         'total_orders': len(orders),
         'accepted_orders': order_service.count_by_status(
             orders,
