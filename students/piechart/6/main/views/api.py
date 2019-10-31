@@ -75,7 +75,7 @@ def stats(request) -> JsonResponse:  # noqa WPS210
         date = date_service.today()
     orders = Order.objects.filter(place_date=date)
 
-    res: Dict[str, Tuple[int, Dict[str, Tuple[str, int]] = {  # noqa WPS221
+    res: Dict[str, Tuple[int, Dict[str, Tuple[str, int]]]] = {  # noqa WPS221
         'total_orders': len(orders),
         'accepted_orders': order_service.count_by_status(
             orders,
