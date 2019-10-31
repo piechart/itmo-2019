@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.http import JsonResponse  # noqa I003
-from typing import List, Dict, Any  # noqa I001
+from django.http import JsonResponse
 
 from main.models import Order, OrderType, Pizza
 from main.services import date_service, notification_service, order_service
@@ -43,7 +42,7 @@ def create_order(request) -> JsonResponse:  # noqa WPS210, WPS212
 
     pizza_titles = pizza_titles.split(',')
     pizza_items = [resolve_pizza(title) for title in pizza_titles]
-    pizzas = [pizza for pizza in pizza_items if pizza is not None]
+    pizzas = [pizza for pizza in pizza_items]
     if len(pizzas) == 0:  # noqa WPS507
         return JsonResponse({
             RESULT: ERROR,
@@ -70,7 +69,7 @@ def create_order(request) -> JsonResponse:  # noqa WPS210, WPS212
 def stats(request) -> JsonResponse:  # noqa WPS210
     """Returns stats."""
     if 'date' in request.GET:
-        date = date_service.date_object(request.GET.get('date'))
+        date = request.GET.get('date')
     else:
         date = date_service.today()
     orders = Order.objects.filter(place_date=date)
@@ -100,12 +99,13 @@ def stats(request) -> JsonResponse:  # noqa WPS210
         for pizza in pizzas.all():
             ordered_pizza_titles.append(pizza.title)
 
-    res['ordered_pizzas']: List[Dict[str, Any]] = []
+    ordered_pizzas = []
     for title in ordered_pizza_titles:
         pizza_obj = {
             'pizza_title': title,
             'count': ordered_pizza_titles.count(title),
         }
-        res['ordered_pizzas'].append(pizza_obj)
+        ordered_pizzas.append(pizza_obj)
+    res['ordered_pizzas'] = ordered_pizzas
 
     return JsonResponse(res)
