@@ -23,14 +23,14 @@ class TestNotificationService(TestCase):
 
     def test_cooking_pizzas_count(self):
         """Test."""
-        self.assertEqual(notification_service.cooking_pizzas_count(), 1)
+        assert notification_service.cooking_pizzas_count() == 1
 
     def test_delivery_time_estimation(self):
         """Test."""
         delivery70 = 'order will be delivered in 70 minutes'
         r1 = notification_service.notify_customer(hour=2)
-        self.assertEqual(r1, delivery70)
+        assert r1 == delivery70
         delivery50 = 'order will be delivered in 50 minutes'
         hours = 14
         r2 = notification_service.notify_customer(hour=hours)
-        self.assertEqual(r2, delivery50)
+        assert r2 == delivery50

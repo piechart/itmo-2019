@@ -23,14 +23,14 @@ class TestGetPizzas(TestCase):
     def test_no_pizzas(self):
         """Test."""
         decode_result = self.decode_json(api.get_pizzas(None))
-        self.assertEqual(decode_result, '{"pizzas": []}')
+        assert decode_result == '{"pizzas": []}'
 
     def test_get_pizzas(self):
         """Test."""
         shared_tests_logic.make_test_data()
         decode_result = self.decode_json(api.get_pizzas(None))
-        self.assertEqual(decode_result, '{0}{1}{2}'.format(
+        assert decode_result == '{0}{1}{2}'.format(
             '{"pizzas": [{"id": 1, "title": "CheesyPizza", ',
             '"price": 10, "ingredients": [{"id": 1, ',
             '"title": "Cheese"}]}]}',
-        ))
+        )

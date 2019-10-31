@@ -18,11 +18,11 @@ class TestStats(TestCase):
     def test_empty_stats(self):
         """Test."""
         res = api.stats(HttpRequest())
-        self.assertEqual(self.decode_json(res), '{0}{1}{2}'.format(
+        assert self.decode_json(res) == '{0}{1}{2}'.format(
             '{"total_orders": 0, "accepted_orders": 0, ',
             '"cooking_orders": 0, "delivery_orders": 0, ',
             '"completed_orders": 0, "ordered_pizzas": []}',
-        ))
+        )
 
     def test_accepted_stats(self):
         """Test."""
@@ -37,9 +37,9 @@ class TestStats(TestCase):
         order.pizzas.set([pizza])
 
         res = api.stats(HttpRequest())
-        self.assertEqual(self.decode_json(res), '{0}{1}{2}{3}'.format(
+        assert self.decode_json(res) == '{0}{1}{2}{3}'.format(
             '{"total_orders": 1, "accepted_orders": 1, "cooking_orders',
             '": 0, "delivery_orders": 0, "completed_orders": ',
             '0, "ordered_pizzas": [{"pizza_title":',
             ' "CheesyPizza", "count": 1}]}',
-        ))
+        )

@@ -28,7 +28,7 @@ class TestCreateOrder(TestCase):
             '{"result": "error", ',
             '"error": "no address or email provided"}',
         )
-        self.assertEqual(self.decode_json(res), valid_result)
+        assert self.decode_json(res) == valid_result
 
     def test_create_order_no_pizza(self):
         """Test."""
@@ -42,7 +42,7 @@ class TestCreateOrder(TestCase):
             '{"result": "error", ',
             '"error": "no pizzas provided"}',
         )
-        self.assertEqual(self.decode_json(res), valid_result)
+        assert self.decode_json(res) == valid_result
 
     def test_create_order_successful(self):
         """Test."""
@@ -54,5 +54,5 @@ class TestCreateOrder(TestCase):
         }
         res = api.create_order(req)
         req_res = self.decode_json(res)
-        self.assertTrue('success' in req_res)
-        self.assertTrue('order_id' in req_res)
+        assert 'success' in req_res
+        assert 'order_id' in req_res
