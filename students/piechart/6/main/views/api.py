@@ -9,8 +9,6 @@ from main.services import date_service, notification_service, order_service
 RESULT = 'result'
 ERROR = 'error'
 
-# type: ignore  # noqa E800
-
 
 def get_pizzas(request) -> JsonResponse:
     """Returns pizzas list."""
@@ -77,7 +75,7 @@ def stats(request) -> JsonResponse:  # noqa WPS210
         date = date_service.today()
     orders = Order.objects.filter(place_date=date)
 
-    res: Dict[str, Any] = {
+    res: Dict[str, Any] = {  # type: ignore
         'total_orders': len(orders),
         'accepted_orders': order_service.count_by_status(
             orders,
