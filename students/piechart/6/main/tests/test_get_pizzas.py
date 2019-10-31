@@ -16,7 +16,7 @@ class TestGetPizzas(TestCase):
         Order.objects.all().delete()
         Ingredient.objects.all().delete()
 
-    def decode_json(self, json_response):
+    def decode_json(self, json_response) -> str:
         """Decodes json."""
         return json_response._container[0].decode('utf-8')  # noqa WPS437
 

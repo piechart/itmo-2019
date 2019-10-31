@@ -8,7 +8,7 @@ import sys
 import django
 
 
-def main():
+def main() -> None:
     """Main function for manage.py."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'piepizza.settings')
     django.setup()

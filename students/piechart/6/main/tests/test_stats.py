@@ -11,7 +11,7 @@ from main.views import api
 class TestStats(TestCase):
     """Tests."""
 
-    def decode_json(self, json_response):
+    def decode_json(self, json_response) -> str:
         """Decode."""
         return json_response._container[0].decode('utf-8')  # noqa WPS437
 

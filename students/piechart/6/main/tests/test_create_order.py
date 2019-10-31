@@ -16,7 +16,7 @@ class TestCreateOrder(TestCase):
         Order.objects.all().delete()
         shared_tests_logic.make_test_data()
 
-    def decode_json(self, json_response):
+    def decode_json(self, json_response) -> str:
         """Decode."""
         return json_response._container[0].decode('utf-8')  # noqa WPS437
 

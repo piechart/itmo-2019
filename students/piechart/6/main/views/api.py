@@ -9,7 +9,7 @@ RESULT = 'result'
 ERROR = 'error'
 
 
-def get_pizzas(request):
+def get_pizzas(request) -> JsonResponse:
     """Returns pizzas list."""
     response = {
         'pizzas': [
@@ -19,13 +19,12 @@ def get_pizzas(request):
     return JsonResponse(response)
 
 
-def create_order(request):  # noqa WPS210, WPS212
+def create_order(request) -> JsonResponse:  # noqa WPS210, WPS212
     """Creates order."""
-    def resolve_pizza(pizza_title):  # noqa WPS430
+    def resolve_pizza(pizza_title) -> Pizza:  # noqa WPS430
         pizza = Pizza.objects.get(title=pizza_title)
         if pizza is not None:
             return pizza
-        return None
 
     address = request.POST.get('address')
     email = request.POST.get('email')
@@ -69,7 +68,7 @@ def create_order(request):  # noqa WPS210, WPS212
     })
 
 
-def stats(request):  # noqa WPS210
+def stats(request) -> JsonResponse:  # noqa WPS210
     """Returns stats."""
     if 'date' in request.GET:
         date = date_service.date_object(request.GET.get('date'))

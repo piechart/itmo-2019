@@ -3,7 +3,7 @@
 from main.models import Ingredient, Pizza
 
 
-def make_test_data():
+def make_test_data() -> Pizza:
     """Creates test ingredient and pizza."""
     cheese = Ingredient(id=1, title='Cheese')
     cheese.save()

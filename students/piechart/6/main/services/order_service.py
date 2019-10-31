@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def count_by_status(orders, status):
+def count_by_status(orders, status) -> int:
     """Filters array of orders by status and returns its length."""
     filtered = []
     s2 = str(status)
