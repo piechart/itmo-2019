@@ -15,7 +15,7 @@ def pytest_configure():
     django.setup()
 
     cmd1 = 'python students/piechart/6/manage.py makemigrations'
-    cmd2 = 'python students/piechart/6/manage.py migrate'
+    cmd2 = 'python students/piechart/6/manage.py migrate --run-syncdb'
 
     subprocess.check_call(cmd1, shell=True)  # noqa: S607, S602
     subprocess.check_call(cmd2, shell=True)  # noqa: S607, S602
