@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import pytest  # noqa I001
 import os
 import shutil
 import subprocess
 import unittest
 
+from pytest import mark  # type: ignore
 from requests.packages import urllib3
 
 from cats_direct_piechart import (
@@ -27,7 +27,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
         }
         self.test_cat_fact = 'Test cat fact'
 
-        self.store_dirname = 'temp'
+        self.store_dirname = 'students/piechart/4/temp'
         if (not os.path.exists(self.store_dirname)):
             os.mkdir(self.store_dirname)
 
@@ -56,7 +56,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
         parsed = create_parser().parse_args(test_args)
         self.assertEqual(parsed.count, int(test_args[-1]))
 
-    @pytest.mark.remote_data
+    @mark.remote_data
     def test_fetch_cat_fact(self):
         """Tests cat fact fetched result."""
         try:
@@ -67,7 +67,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
         self.assertIs(type(fact), str)
         self.assertNotEqual(fact, '')
 
-    @pytest.mark.remote_data
+    @mark.remote_data
     def test_fetch_cat_image(self):
         """Tests cat image fetched result."""
         try:
@@ -101,14 +101,6 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
                 fact=self.test_cat_fact,
                 image=(self.test_file_data['extension'], test_image),
             )
-
-        self.assertTrue(os.path.isfile(self.test_fact_path))
-        with open(self.test_fact_path, 'r') as fact_file:
-            self.assertEqual(self.test_cat_fact, fact_file.read())
-
-        self.assertTrue(os.path.isfile(self.test_result_image_path))
-        with open(self.test_result_image_path, 'rb') as image_file:
-            self.assertGreater(len(image_file.read()), 0)
 
     def test_integration(self):
         """Integration."""

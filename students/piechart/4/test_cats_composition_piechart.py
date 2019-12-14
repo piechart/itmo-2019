@@ -4,7 +4,7 @@ import os
 import shutil
 import unittest
 
-import pytest
+from pytest.mark import remote_data  # type: ignore
 
 import cats_composition_piechart
 
@@ -23,7 +23,7 @@ class TestCatsComposition(unittest.TestCase):
         """Tear down."""
         shutil.rmtree(self.temp_dir)
 
-    @pytest.mark.remote_data
+    @remote_data
     def test_main(self):
         """Tests main."""
         self.assertTrue(os.path.exists(self.temp_dir))

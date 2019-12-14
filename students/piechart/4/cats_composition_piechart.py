@@ -1,6 +1,9 @@
+
 # -*- coding: utf-8 -*-
 
 from typing import Callable, Tuple
+
+from requests.packages import urllib3
 
 from cats_direct_piechart import (
     create_parser,
@@ -8,8 +11,6 @@ from cats_direct_piechart import (
     fetch_cat_image,
     save_cat,
 )
-
-from urllib3 import HTTPResponse
 
 
 class CatProcessor(object):
@@ -21,9 +22,9 @@ class CatProcessor(object):
 
     def __init__(
         self,
-        fetch_text: Callable[[bool], str],
-        fetch_image: Callable[[], Tuple[str, HTTPResponse]],
-        process_text_and_image: Callable[[int, str, Tuple[str, HTTPResponse]], None],
+        fetch_text,
+        fetch_image: Callable[[], Tuple[str, urllib3.HTTPResponse]],
+        process_text_and_image: Callable[[int, str, Tuple[str, urllib3.HTTPResponse]], None]  # noqa E501
     ):
         """Saves dependencies into internal state."""
         self._fetch_text = fetch_text
