@@ -7,7 +7,7 @@ import shutil
 import subprocess
 import unittest
 
-from pytest import mark
+import pytest
 
 from cats_direct_piechart import (
     create_parser,
@@ -57,7 +57,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
         parsed = create_parser().parse_args(test_args)
         assert parsed.count == int(test_args[-1])
 
-    @mark.remote_data
+    @pytest.mark.remote_data
     def test_fetch_cat_fact(self):
         """Tests cat fact fetched result."""
         try:
@@ -67,7 +67,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
 
         assert fact != ''
 
-    @mark.remote_data
+    @pytest.mark.remote_data
     def test_fetch_cat_image(self):
         """Tests cat image fetched result."""
         try:

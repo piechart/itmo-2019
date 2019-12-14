@@ -6,7 +6,7 @@ import os
 import shutil
 import unittest
 
-from pytest.mark import remote_data
+import pytest
 
 import cats_composition_piechart
 
@@ -25,7 +25,7 @@ class TestCatsComposition(unittest.TestCase):
         """Tear down."""
         shutil.rmtree(self.temp_dir)
 
-    @remote_data
+    @pytest.mark.remote_data
     def test_main(self):
         """Tests main."""
         assert os.path.exists(self.temp_dir)
