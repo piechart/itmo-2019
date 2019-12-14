@@ -76,6 +76,8 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
         assert len(fetched) == 2
         assert fetched[0]
 
+        content_length = fetched[1].headers['Content-length']
+
         try:
             int_content_length = int(content_length)
         except Exception:
