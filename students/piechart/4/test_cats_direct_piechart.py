@@ -36,7 +36,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
             self.store_dirname,
             self.test_file_data['index'],
         )
-        self.test_image_path = '{0}.{1}'.format(
+        self.test_image_path = 'students/piechart/4/{0}.{1}'.format(
             'test_image',
             self.test_file_data['extension'],
         )
