@@ -3,6 +3,8 @@
 import os
 import unittest
 
+import pytest
+
 from itmo.second import cats_composition
 
 
@@ -14,6 +16,7 @@ class TestCatsComposition(unittest.TestCase):
         self.temp_dir = 'temp'
         self.test_file_amount = 1
 
+    @pytest.mark.remote_data
     def test_main(self):
         """Tests main."""
         self.assertTrue(os.path.exists(self.temp_dir))

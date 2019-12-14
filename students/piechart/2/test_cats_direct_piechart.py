@@ -4,6 +4,7 @@ import os
 import shutil
 import unittest
 
+import pytest
 import urllib3
 
 from itmo.second.cats_direct import (
@@ -56,6 +57,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
         parsed = create_parser().parse_args(test_args)
         self.assertEqual(parsed.count, int(test_args[-1]))
 
+    @pytest.mark.remote_data
     def test_fetch_cat_fact(self):
         """Tests cat fact fetched result."""
         try:
@@ -66,6 +68,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
         self.assertIs(type(fact), str)
         self.assertNotEqual(fact, '')
 
+    @pytest.mark.remote_data
     def test_fetch_cat_image(self):
         """Tests cat image fetched result."""
         try:
