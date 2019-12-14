@@ -21,7 +21,7 @@ def test_incorrect_module_import():
 def test_find_valid_files():
     """Tests valid files finding."""
     assert runtests.find_files(
-        os.getcwd(), '*{0}'.format(runtests.PY_EXTENSION),
+        'students/piechart/1/', '*{0}'.format(runtests.PY_EXTENSION),
     )
 
 
