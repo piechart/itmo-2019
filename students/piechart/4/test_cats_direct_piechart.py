@@ -6,7 +6,6 @@ import subprocess
 import unittest
 
 from pytest import mark  # type: ignore
-from requests.packages import urllib3
 
 from cats_direct_piechart import (
     create_parser,
@@ -75,10 +74,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
             self.fail(self.http_exception_text)
 
         assert len(fetched) == 2
-        assert len(fetched[0]) != 0
-
-        content_length = fetched[1].headers['Content-length']
-        assert content_length != ''
+        assert fetched[0]
 
         try:
             int_content_length = int(content_length)
