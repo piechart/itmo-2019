@@ -13,6 +13,8 @@ from itmo.second.cats_direct import (
     save_cat,
 )
 
+INDEX_STR = 'index'
+EXTENSIONS_STR = 'extension'
 
 class TestCatsDirect(unittest.TestCase):  # noqa WPS230
     """cats_direct tester."""
@@ -20,8 +22,8 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
     def setUp(self):
         """Sets up reused data."""
         self.test_file_data = {
-            'index': 1010,
-            'extension': 'jpg',
+            INDEX_STR: 1010,
+            EXTENSIONS_STR: 'jpg',
         }
         self.test_cat_fact = 'Test cat fact'
 
@@ -31,16 +33,16 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
 
         self.test_fact_path = '{0}/cat_{1}_fact.txt'.format(
             self.store_dirname,
-            self.test_file_data['index'],
+            self.test_file_data[INDEX_STR],
         )
         self.test_image_path = '{0}.{1}'.format(
             'test_image',
-            self.test_file_data['extension'],
+            self.test_file_data[EXTENSIONS_STR],
         )
         self.test_result_image_path = '{0}/cat_{1}_image.{2}'.format(
             self.store_dirname,
-            self.test_file_data['index'],
-            self.test_file_data['extension'],
+            self.test_file_data[INDEX_STR],
+            self.test_file_data[EXTENSIONS_STR],
         )
         self.http_exception_text = 'HTTP exception raised'
 
@@ -93,9 +95,9 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
 
         with open(self.test_image_path, 'rb') as test_image:
             save_cat(
-                index=self.test_file_data['index'],
+                index=self.test_file_data[INDEX_STR],
                 fact=self.test_cat_fact,
-                image=(self.test_file_data['extension'], test_image),
+                image=(self.test_file_data[EXTENSIONS_STR], test_image),
             )
 
         self.assertTrue(os.path.isfile(self.test_fact_path))
