@@ -1,6 +1,8 @@
 
 # -*- coding: utf-8 -*-
 
+# type: ignore  # noqa E800
+
 from typing import Callable, Tuple
 
 from requests.packages import urllib3

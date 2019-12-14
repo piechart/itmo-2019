@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
+# type: ignore  # noqa E800
+
 import os
 import shutil
 import subprocess
 import unittest
 
-from pytest import mark  # type: ignore
+from pytest import mark
 
 from cats_direct_piechart import (
     create_parser,

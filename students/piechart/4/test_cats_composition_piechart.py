@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
+# type: ignore  # noqa E800
+
 import os
 import shutil
 import unittest
 
-from pytest.mark import remote_data  # type: ignore
+from pytest.mark import remote_data
 
 import cats_composition_piechart
 
