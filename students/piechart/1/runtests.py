@@ -63,8 +63,3 @@ def perform_testing(target_dir=''):
                 test[0],
                 execute_test(test[1]),
             ))
-
-
-if __name__ == '__main__':
-    target_dir = input('Input target dir (Enter for current): ')  # noqa: WPS421, S322, E501
-    perform_testing(target_dir)
