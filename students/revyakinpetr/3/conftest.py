@@ -75,8 +75,6 @@ def rm_fixture(request):
 
 @pytest.fixture(scope=SCOPE, params=[
     ('тест.txt', ['code: 0']),
-    ('wrong.txt', ['code: 1']),
-    ('testdir', ['code: 1']),
 ])
 def contains_fixture(request):
     """Fixture for contains."""
