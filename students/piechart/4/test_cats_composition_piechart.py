@@ -14,7 +14,7 @@ class TestCatsComposition(unittest.TestCase):
 
     def setUp(self):
         """Setup."""
-        self.temp_dir = 'temp'
+        self.temp_dir = 'students/piechart/4/temp'
         if not os.path.exists(self.temp_dir):
             os.mkdir(self.temp_dir)
         self.test_file_amount = 1
@@ -26,7 +26,7 @@ class TestCatsComposition(unittest.TestCase):
     @remote_data
     def test_main(self):
         """Tests main."""
-        self.assertTrue(os.path.exists(self.temp_dir))
+        assert os.path.exists(self.temp_dir)
 
         fact_file = '{0}/cat_{1}_fact.txt'.format(
             self.temp_dir,
@@ -46,8 +46,7 @@ class TestCatsComposition(unittest.TestCase):
             show_information=print,  # noqa: T002
         )
 
-        self.assertTrue(os.path.exists(fact_file))
-        self.assertGreater(os.stat(fact_file).st_size, 0)
+        assert os.stat(fact_file).st_size > 0
 
 
 if __name__ == '__main__':

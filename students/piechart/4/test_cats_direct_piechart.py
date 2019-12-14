@@ -54,7 +54,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
         """Tests arguments parsing."""
         test_args = ['--count', '3']
         parsed = create_parser().parse_args(test_args)
-        self.assertEqual(parsed.count, int(test_args[-1]))
+        assert parsed.count == int(test_args[-1])
 
     @mark.remote_data
     def test_fetch_cat_fact(self):
@@ -64,8 +64,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
         except Exception:
             self.fail(self.http_exception_text)
 
-        self.assertIs(type(fact), str)
-        self.assertNotEqual(fact, '')
+        assert fact != ''
 
     @mark.remote_data
     def test_fetch_cat_image(self):
@@ -75,25 +74,22 @@ class TestCatsDirect(unittest.TestCase):  # noqa WPS230
         except Exception:
             self.fail(self.http_exception_text)
 
-        self.assertEqual(len(fetched), 2)
+        assert len(fetched) == 2
+        assert len(fetched[0]) != 0
 
-        self.assertIs(type(fetched[0]), str)
-        self.assertNotEqual(len(fetched[0]), 0)
-
-        self.assertIs(type(fetched[1]), urllib3.response.HTTPResponse)
         content_length = fetched[1].headers['Content-length']
-        self.assertNotEqual(content_length, '')
+        assert content_length != ''
 
         try:
             int_content_length = int(content_length)
         except Exception:
             self.fail('Unexpected non-int data in Content-length header:')
 
-        self.assertGreater(int_content_length, 0)
+        assert int_content_length > 0
 
     def test_save_cat(self):
         """Performs save_cat with test data and compares the result."""
-        self.assertTrue(os.path.isfile(self.test_image_path))
+        assert os.path.isfile(self.test_image_path)
 
         with open(self.test_image_path, 'rb') as test_image:
             save_cat(
