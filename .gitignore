@@ -202,3 +202,5 @@ ex.py
 .vscode/
 temp/*
 !temp/.gitkeep
+.jscpd/
+*.txt
